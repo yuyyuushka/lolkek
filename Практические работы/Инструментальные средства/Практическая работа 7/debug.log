@@ -1,0 +1,9 @@
+2024-11-20 01:04:39,147 - DEBUG - Вызвана функция some_function
+2024-11-20 01:04:39,148 - DEBUG - Завершена функция some_function
+2024-11-20 01:04:41,149 - DEBUG - Время выполнения заняло time_function: 2.0004260540008545 секунд
+2024-11-20 01:05:12,689 - DEBUG - Вызвана функция thread_function
+2024-11-20 01:05:12,690 - ERROR - Ошибка в функции thread_function: division by zero
+2024-11-20 01:05:12,690 - DEBUG - Вызвана функция thread_function
+2024-11-20 01:05:12,691 - DEBUG - Вызвана функция thread_function
+2024-11-20 01:05:12,692 - ERROR - Ошибка в функции thread_function: division by zero
+2024-11-20 01:05:12,692 - DEBUG - Завершена функция thread_function

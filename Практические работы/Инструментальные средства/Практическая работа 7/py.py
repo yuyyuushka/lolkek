@@ -1,0 +1,75 @@
+import logging
+import time
+from functools import wraps
+
+class Debugger:
+    def __init__(self, logger=None):
+        self.logger = logger or logging.getLogger(__name__)
+        self.logger.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        console_handler = logging.StreamHandler()
+        console_handler.setFormatter(formatter)
+        self.logger.addHandler(console_handler)
+
+        file_handler = logging.FileHandler('debug.log')
+        file_handler.setFormatter(formatter)
+        self.logger.addHandler(file_handler)
+
+    def log_execution(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            self.logger.debug(f"Вызвана функция {func.__name__}")
+            result = func(*args, **kwargs)
+            self.logger.debug(f"Завершена функция {func.__name__}")
+            return result
+        return wrapper
+
+    def log_exception(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            try:
+                return func(*args, **kwargs)
+            except Exception as e:
+                self.logger.error(f"Ошибка в функции {func.__name__}: {e}")
+                raise
+        return wrapper
+
+    def measure_time(self, func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            start_time = time.time()
+            result = func(*args, **kwargs)
+            end_time = time.time()
+            self.logger.debug(f"Время выполнения заняло {func.__name__}: {end_time - start_time} секунд")
+            return result
+        return wrapper
+    
+
+# Задание 2
+
+debugger = Debugger()
+
+@debugger.log_execution
+@debugger.log_exception
+def some_function():
+    print("Выполнение первой функции")
+
+@debugger.log_execution
+@debugger.log_exception
+def another_function():
+    print("Выполнение второй функции")
+    raise ValueError("Произошла ошибка")
+
+some_function()
+
+# Задание 3
+
+@debugger.measure_time
+def time_function():
+    time.sleep(2)
+    print("Вызвана функция измерения времени в отладочном классе")
+
+time_function()
+
+# Задание 4
+
