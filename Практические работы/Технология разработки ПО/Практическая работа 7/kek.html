@@ -1,0 +1,35 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 4</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Обработка событий</h1>
+    <button class="button" id="changeTextButton">Изменить текст</button>
+    <button class="button" id="randomColorButton">Случайный цвет</button>
+    <p id="text">Этот текст будет изменен.</p>
+
+    <script>
+        document.getElementById("changeTextButton").onclick = function() {
+            document.getElementById("text").innerText = "Текст изменен!";
+        };
+
+        document.getElementById("randomColorButton").onclick = function() {
+            const randomColor = getRandomColor();
+            document.getElementById("text").style.color = randomColor;
+        };
+
+        function getRandomColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+        
+    </script>
+
+<button onclick="location.href='index.html'">На главную</button>
+
+</body>
+</html>

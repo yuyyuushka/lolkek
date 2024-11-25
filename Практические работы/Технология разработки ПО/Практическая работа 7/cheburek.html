@@ -1,0 +1,40 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задание 5</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Динамическое изменение содержимого</h1>
+    <button onclick="addElement()">Добавить кота на экран</button>
+    <div id="container"></div>
+
+    <h2>Форма</h2>
+    <form id="myForm">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name">
+        <button type="button" onclick="submitForm()">Отправить</button>
+    </form>
+
+    <script>
+        function addElement() {
+            let newElement = document.createElement("img");
+            newElement.src = "welcome.jpg";
+            newElement.alt = "Картинка кота.";
+            document.getElementById("container").appendChild(newElement);
+        }
+
+        function submitForm() {
+            let name = document.getElementById("name").value;
+            if (name) {
+                alert("Привет, " + name + "!");
+            } else {
+                alert("Пожалуйста, введите ваше имя.");
+            }
+        }
+    </script>
+
+<button onclick="location.href='index.html'">На главную</button>
+
+</body>
+</html>
